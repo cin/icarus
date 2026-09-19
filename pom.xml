@@ -5,7 +5,7 @@
 
     <groupId>com.instaclustr</groupId>
     <artifactId>icarus</artifactId>
-    <version>4.1.12</version>
+    <version>4.1.13</version>
 
     <name>instaclustr-icarus</name>
     <description>Sidecar for Apache Cassandra</description>
@@ -13,15 +13,15 @@
 
     <properties>
         <instaclustr.sidecar.common.version>2.0.0</instaclustr.sidecar.common.version>
-        <instaclustr.esop.version>4.1.12</instaclustr.esop.version>
+        <instaclustr.esop.version>4.1.13</instaclustr.esop.version>
 
-        <!-- BOMs imported by esop-core/esop-s3/esop-azure/esop-gcp respectively (esop-4.1.12).
+        <!-- BOMs imported by esop-core/esop-s3/esop-azure/esop-gcp respectively (esop-4.1.13).
              Each module imports its own BOM in its own dependencyManagement, which does not
              propagate to us as a consumer, so we import the same BOMs at the same versions here
              to avoid Maven's ordinary dependency mediation picking inconsistent transitive
              versions (jackson, netty, guava, etc.) across the four esop modules. -->
         <esop.jackson.bom.version>2.21.6</esop.jackson.bom.version>
-        <esop.aws-java-sdk.version>2.53.3</esop.aws-java-sdk.version>
+        <esop.aws-java-sdk.version>2.54.20</esop.aws-java-sdk.version>
         <esop.azure.sdk.bom.version>1.3.0</esop.azure.sdk.bom.version>
         <esop.google-cloud-libraries.version>26.68.0</esop.google-cloud-libraries.version>
 
