@@ -28,14 +28,14 @@
         <testng.version>7.5</testng.version>
         <mockito.version>2.23.4</mockito.version>
         <awaitility.version>3.1.6</awaitility.version>
-        <cassandra.driver.version>4.11.1</cassandra.driver.version>
-        <version.embedded.cassandra>4.0.1</version.embedded.cassandra>
+        <cassandra.driver.version>4.19.0</cassandra.driver.version>
+        <version.embedded.cassandra>4.1.1</version.embedded.cassandra>
 
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
         <maven.shade.plugin.version>3.1.1</maven.shade.plugin.version>
-        <git.command.plugin.version>4.0.4</git.command.plugin.version>
+        <git.command.plugin.version>4.9.10</git.command.plugin.version>
         <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
         <maven.javadoc.plugin.version>3.1.1</maven.javadoc.plugin.version>
@@ -132,6 +132,14 @@
             <groupId>com.instaclustr</groupId>
             <artifactId>sidecar-common</artifactId>
             <version>${instaclustr.sidecar.common.version}</version>
+            <exclusions>
+                <!-- driver 4.19.0 moved from com.datastax.oss to org.apache.cassandra (same
+                     packages); exclude the old coordinates so only one copy is on the classpath. -->
+                <exclusion>
+                    <groupId>com.datastax.oss</groupId>
+                    <artifactId>java-driver-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -166,7 +174,7 @@
              esop-core/esop-s3/esop-azure/esop-gcp are thin, unshaded jars, so we now declare it
              explicitly, matching cassandra.driver.version. -->
         <dependency>
-            <groupId>com.datastax.oss</groupId>
+            <groupId>org.apache.cassandra</groupId>
             <artifactId>java-driver-query-builder</artifactId>
             <version>${cassandra.driver.version}</version>
             <scope>test</scope>
@@ -186,7 +194,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.datastax.oss</groupId>
+            <groupId>org.apache.cassandra</groupId>
             <artifactId>java-driver-core</artifactId>
             <version>${cassandra.driver.version}</version>
             <exclusions>
